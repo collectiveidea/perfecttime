@@ -24,14 +24,15 @@ var PerfectTime = Class.create({
   initialize: function(format, selector) {
     this.selector  = (selector)?selector:this.defaultSelector;
     this.format = (format)?format:this.defaultFormat;
+    x = this;
     $$(selector).each(function(item) {
       var ISOtime = item.getAttribute('title');
       var newDate = this.parseISO(ISOtime);
       item.innerHTML = this.strftime(newDate);
-    }, this);    
+    }, x);    
   },
 
-  isoRegEx:  /(\d{4})(-?(\d{2})(-?(\d{2})(T(\d{2}):?(\d{2})(:?(\d{2})([.]?(\d+))?)?(Z|(([+-])(\d{2}):?(\d{2}))?)?)?)?)?/,     
+  isoRegEx:  /(\d{4})(-?(\d{2})(-?(\d{2})((T|\s)(\d{2}):?(\d{2})(:?(\d{2})([.]?(\d+))?)?(Z|(([+-])(\d{2}):?(\d{2}))?)?)?)?)?/,     
   
   parseISO: function(isoString) {
     // Parse ISO 8601 type times (e.g. hCalendar)
@@ -47,15 +48,15 @@ var PerfectTime = Class.create({
     // <month> - 1:  Because JS months are 0-11
     if (d[ 3]) { theDate.setMonth(  d[ 3] - 1); }
     if (d[ 5]) { theDate.setDate(   d[ 5]); }
-    if (d[ 7]) { theDate.setHours(  d[ 7]); }
-    if (d[ 8]) { theDate.setMinutes(d[ 8]); }
-    if (d[10]) { theDate.setSeconds(d[10]); }
+    if (d[ 8]) { theDate.setHours(  d[ 8]); }
+    if (d[ 9]) { theDate.setMinutes(d[ 9]); }
+    if (d[11]) { theDate.setSeconds(d[11]); }
     // Must be between 0 and 999), using Paul Sowden's method: http://delete.me.uk/2005/03/iso8601.html
-    if (d[12]) { theDate.setMilliseconds(Number("0." + d[12]) * 1000); }
+    if (d[13]) { theDate.setMilliseconds(Number("0." + d[13]) * 1000); }
     var offset = 0;
-    if (d[15]) {
-        var offset = (Number(d[16])*60 + Number(d[17])) * 60;
-        if (d[15] == "+") { offset *= -1; }
+    if (d[16]) {
+        var offset = (Number(d[17])*60 + Number(d[18])) * 60;
+        if (d[16] == "+") { offset *= -1; }
     }
     
     offset -= theDate.getTimezoneOffset() * 60;
