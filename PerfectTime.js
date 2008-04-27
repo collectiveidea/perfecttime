@@ -113,6 +113,6 @@ function handleEvent(obj, event, func) {
             });
         }
         
-        handleEvent(window, 'load', self.instantiate);
+        document.observe('dom:loaded', self.instantiate);
     }
     var timeThing = new PerfectTime('%Y-%m-%d %H:%M.%S %Z');
