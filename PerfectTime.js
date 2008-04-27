@@ -30,7 +30,7 @@ function handleEvent(obj, event, func) {
             
         var self = this;
         
-        self.defaultFormat = '<nobr>%d %b %Y</nobr> at <nobr>%H:%M</nobr>';
+        self.defaultFormat = '%d %b %Y at %H:%M';
         self.format = (arguments[0])?arguments[0]:self.defaultFormat;
         self.isoRegEx = /(\d{4})(-?(\d{2})(-?(\d{2})(T(\d{2}):?(\d{2})(:?(\d{2})([.]?(\d+))?)?(Z|(([+-])(\d{2}):?(\d{2}))?)?)?)?)?/;
         
