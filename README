@@ -1,0 +1,29 @@
+For usage, see:
+  http://mikewest.org/archive/son-of-perfecttime-the-validationator
+
+Below is how this version differs from Mike's version 1.1.
+
+
+* Requires prototype.js 1.6 or later.
+* You can pass any css selector as a second argument:
+  new PerfectTime('%Y-%m-%d %H:%M.%S %Z', '.hevent .dtstart');
+  
+* ISO 8601 is not completely supported, but slightly improved. You can use a space instead of T. The formats accepted by this script are the following:
+
+YYYY
+YYYY-MM
+YYYY-MM-DD
+YYYY-MM-DDTHH:MM
+YYYY-MM-DD HH:MM
+YYYY-MM-DDTHH:MM[+-]HHMM
+YYYY-MM-DD HH:MM[+-]HHMM
+YYYY-MM-DDTHH:MM:SS.sZ
+YYYY-MM-DD HH:MM:SS.sZ
+YYYY-MM-DDTHH:MM:SS
+YYYY-MM-DD HH:MM:SS
+YYYY-MM-DDTHH:MM:SS.s
+YYYY-MM-DD HH:MM:SS.s
+YYYY-MM-DDTHH:MM:SS.s[+-]HHMM    
+YYYY-MM-DD HH:MM:SS.s[+-]HHMM    
+YYYY-MM-DDTHH:MM:SS.sZ
+YYYY-MM-DD HH:MM:SS.sZ
