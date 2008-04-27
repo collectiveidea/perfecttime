@@ -105,35 +105,12 @@ function handleEvent(obj, event, func) {
             return fmt;
         }
         
-        
         self.instantiate = function () {
-            // Spans by old method
-            var spans = document.getElementsByTagName('span');
-            for (i=0, numSpans=spans.length; i < numSpans; i++) {
-                if (spans[i].className.match(/PerfectTime/)) {
-                    self.processSpan(spans[i]);
-                }
-            }
-            
-            // ABBRs by new method
-            var abbrs = document.getElementsByTagName('abbr');
-            for (i=0, numAbbrs=abbrs.length; i < numAbbrs; i++) {
-                if (abbrs[i].className.match(/PerfectTime/)) {
-                    self.processAbbr(abbrs[i]);
-                }
-            }            
-        }
-        
-        self.processSpan = function (theSpan) {
-            var GMT = parseInt(theSpan.getAttribute('gmt_time')) * 1000;
-            var newDate = new Date(GMT);
-            theSpan.innerHTML = self.strftime(newDate);
-        }
-        
-        self.processAbbr = function (theAbbr) {
-            var ISOtime = theAbbr.getAttribute('title');
-            var newDate = self.parseISO(ISOtime);
-            theAbbr.innerHTML = self.strftime(newDate);
+            $$('.dtreviewed').each(function(item) {
+              var ISOtime = item.getAttribute('title');
+              var newDate = self.parseISO(ISOtime);
+              item.innerHTML = self.strftime(newDate);
+            });
         }
         
         handleEvent(window, 'load', self.instantiate);
