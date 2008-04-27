@@ -77,9 +77,11 @@ function handleEvent(obj, event, func) {
             d:      function(t) { return this.zeropad(t.getDate()) },
             H:      function(t) { return this.zeropad(t.getHours()) },
             I:      function(t) { return this.zeropad((t.getHours() + 12) % 12) },
+            l:      function(t) { return (t.getHours() + 12) % 12 },
             m:      function(t) { return this.zeropad(t.getMonth()+1) }, // month-1
             M:      function(t) { return this.zeropad(t.getMinutes()) },
             p:      function(t) { return this.H(t) < 12 ? 'AM' : 'PM'; },
+            P:      function(t) { return this.H(t) < 12 ? 'am' : 'pm'; },
             S:      function(t) { return this.zeropad(t.getSeconds()) },
             w:      function(t) { return t.getDay() }, // 0..6 == sun..sat
             y:      function(t) { return this.zeropad(this.Y(t) % 100); },
