@@ -17,31 +17,27 @@
 */
 
 /* PerfectTime */
-var PerfectTime = Class.create({
-  defaultFormat: '%d %b %Y at %H:%M',
-  defaultSelector: '.PerfectTime',
-  
-  initialize: function(format, selector) {
-    this.selector  = (selector)?selector:this.defaultSelector;
-    this.format = (format)?format:this.defaultFormat;
-    x = this;
-    $(selector).each(function(item) {
-      var ISOtime = item.getAttribute('title');
-      var newDate = this.parseISO(ISOtime);
-      item.innerHTML = this.strftime(newDate);
-    }, x);    
-  },
+$(function(){
+  var _defaultFormat = '%d %b %Y at %H:%M';
 
-  isoRegEx:  /(\d{4})(-?(\d{2})(-?(\d{2})((T|\s)(\d{2}):?(\d{2})(:?(\d{2})([.]?(\d+))?)?(Z|(([+-])(\d{2}):?(\d{2}))?)?)?)?)?/,     
+  $.fn.perfectTime = function(format) {
+    return this.each( function() {
+      var format = (format)?format:_defaultFormat;
+      var newDate = $.fn.parseISO($(this).attr('title'));
+      $(this).html($.fn.strftime(newDate, format));
+    });    
+  }
+
+  var isoRegEx =   /(\d{4})(-?(\d{2})(-?(\d{2})((T|\s)(\d{2}):?(\d{2})(:?(\d{2})([.]?(\d+))?)?(Z|(([+-])(\d{2}):?(\d{2}))?)?)?)?)?/;
   
-  parseISO: function(isoString) {
+  $.fn.parseISO = function(isoString) {
     // Parse ISO 8601 type times (e.g. hCalendar)
     //     based on Paul Sowden's method, tweaked to match up 
     //     with 'real world' hCalendar usage:
     //
     //         http://delete.me.uk/2005/03/iso8601.html
     //    
-    var d       = isoString.match(this.isoRegEx);
+    var d       = isoString.match(isoRegEx);
     
     var theDate = new Date(d[1], 0, 1);
     
@@ -62,9 +58,9 @@ var PerfectTime = Class.create({
     offset -= theDate.getTimezoneOffset() * 60;
     theDate.setTime(Number(theDate) + (offset * 1000));
     return theDate;
-  },
+  };
         
-  strftime_funks: {
+  var strftime_funks = {
       zeropad: 
               function( n ){ return n>9 ? n : '0'+n; },
       a:      function(t) { return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][t.getDay()] },
@@ -92,15 +88,14 @@ var PerfectTime = Class.create({
                   }
               },    
       '%':    function(t) { return '%' }
-  },
-  strftime: function(theDate) {
-      var fmt = this.format;
-      for (var s in this.strftime_funks) {
+  };
+  $.fn.strftime = function(theDate, format) {
+      for (var s in strftime_funks) {
           if (s.length == 1) {
-              fmt = fmt.replace('%' + s, this.strftime_funks[s](theDate));
+              format = format.replace('%' + s, strftime_funks[s](theDate));
           }
       }
-      return fmt;
+      return format;
   }
         
 });
