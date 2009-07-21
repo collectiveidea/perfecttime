@@ -104,7 +104,3 @@ var PerfectTime = Class.create({
   }
         
 });
-
-jQuery(function() {
-  new PerfectTime('%Y-%m-%d %H:%M.%S %Z');
-});

@@ -4,7 +4,7 @@ For usage, see:
 Below is how this version differs from Mike's version 1.1.
 
 
-* Requires prototype.js 1.6 or later.
+* Requires jQuery. There is a prototype.js 1.6+ branch, if you're interested. Its only for one $() call, so change it if you need something else.
 * You can pass any css selector as a second argument:
   new PerfectTime('%Y-%m-%d %H:%M.%S %Z', '.hevent .dtstart');
   
