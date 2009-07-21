@@ -25,7 +25,7 @@ var PerfectTime = Class.create({
     this.selector  = (selector)?selector:this.defaultSelector;
     this.format = (format)?format:this.defaultFormat;
     x = this;
-    $$(selector).each(function(item) {
+    $(selector).each(function(item) {
       var ISOtime = item.getAttribute('title');
       var newDate = this.parseISO(ISOtime);
       item.innerHTML = this.strftime(newDate);
@@ -105,6 +105,6 @@ var PerfectTime = Class.create({
         
 });
 
-document.observe('dom:loaded', function(){
+jQuery(function() {
   new PerfectTime('%Y-%m-%d %H:%M.%S %Z');
 });
