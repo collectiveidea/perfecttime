@@ -69,6 +69,7 @@ $(function(){
       B:      function(t) { return ['January','February','March','April','May','June', 'July','August', 'September','October','November','December'][t.getMonth()] },
       c:      function(t) { return t.toString() },
       d:      function(t) { return this.zeropad(t.getDate()) },
+      D:      function(t) { return t.getDate() },
       H:      function(t) { return this.zeropad(t.getHours()) },
       I:      function(t) { return this.zeropad((t.getHours() + 12) % 12) },
       l:      function(t) { return (t.getHours() + 12) % 12 },
