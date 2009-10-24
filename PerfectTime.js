@@ -71,6 +71,7 @@ $(function(){
       d:      function(t) { return this.zeropad(t.getDate()) },
       D:      function(t) { return t.getDate() },
       H:      function(t) { return this.zeropad(t.getHours()) },
+      i:      function(t) { return (t.getHours() + 12) % 12 },
       I:      function(t) { return this.zeropad((t.getHours() + 12) % 12) },
       l:      function(t) { return (t.getHours() + 12) % 12 },
       m:      function(t) { return this.zeropad(t.getMonth()+1) }, // month-1
