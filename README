@@ -5,8 +5,11 @@ Below is how this version differs from Mike's version 1.1.
 
 
 * Requires jQuery. There is a prototype.js 1.6+ branch, if you're interested. Its only for one $() call, so change it if you need something else.
-* You can pass any css selector as a second argument:
-  new PerfectTime('%Y-%m-%d %H:%M.%S %Z', '.hevent .dtstart');
+* Usage:
+  $('.dtstart').perfectTime('%Y-%m-%d %H:%M.%S %Z')
+
+* In place of .dtsart you can have any selector. 
+* If you don't pass in a format, it will use the default: %d %b %Y at %H:%M
   
 * ISO 8601 is not completely supported, but slightly improved. You can use a space instead of T. The formats accepted by this script are the following:
 
