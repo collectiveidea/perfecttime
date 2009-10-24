@@ -22,9 +22,9 @@ $(function(){
 
   $.fn.perfectTime = function(format) {
     return this.each( function() {
-      var format = (format)?format:_defaultFormat;
+      var fmt = (format)?format:_defaultFormat;
       var newDate = $.fn.parseISO($(this).attr('title'));
-      $(this).html($.fn.strftime(newDate, format));
+      $(this).html($.fn.strftime(newDate, fmt));
     });    
   }
 
